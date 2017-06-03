@@ -4,7 +4,7 @@ module ExtractFrames
     extend self
     
     def get_fps(
-        video_filename,
+        video_filename
     )
         fps = nil
         Open4::popen4 "ffmpeg -i #{video_filename}" do |pid, stdin, stdout, stderr| 
@@ -17,7 +17,7 @@ module ExtractFrames
     def get_n_frames(
         video_filename: "#{__dir__}/examples/small.mp4",
         number_frames: 10, 
-        time_offset: 1 ,
+        time_offset: 2,
         format: "png"
     )
         # number_frames: Number of frames to save (integer)
@@ -27,11 +27,11 @@ module ExtractFrames
         fps = get_fps(video_filename) 
         
         #Grab n frames, with timestamps in the middle of each frame period, starting at the frame beginning immediately prior to time_offset:
-        initial_frame = (initial_time*fps).floor
+        initial_frame = (time_offset*fps).floor
         floored_time_offset = (initial_frame + 0.5)/fps
         for i in 0..(number_frames-1)
             start_time = floored_time_offset + i/fps
-            get_frame(video_filename: video_filename, timestamp: start_time, format: format)
+            get_frame(video_filename: video_filename, time_offset: start_time)
             puts "Saved frame #{i} from #{'%3f' % start_time.round(3)}s!"
         end
         
@@ -53,7 +53,7 @@ module ExtractFrames
                 "-i #{video_filename} "\
                 "-ss #{time_offset} "\
                 "-frames #{number_frames} "\
-                "#{video_filename}-#{'%.3f' % timestamp.round(3)}-%03d.#{format}"
+                "#{video_filename}-#{'%.3f' % time_offset.round(3)}-%03d.#{format}"
 
         out = nil
         err = nil
