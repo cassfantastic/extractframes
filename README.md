@@ -8,7 +8,7 @@ Clone the repo, install ruby and ffmpeg, run `gem install bundler`, and then run
 
 ## Example
 
-Run `ruby extractframes.rb` to extract the first ten frames from the file `small.mp4` located in the `examples` folder. These will be created in the `examples` folder.
+Run `ruby extractframes.rb` to extract the first ten frames from the file `small.mp4` located in the `examples` folder. These will be created in the `examples` folder. This is not very interesting, as this example file only starts changing much after thirty frames or so. Oops.
 
 ## Usage
 
@@ -27,3 +27,9 @@ ExtractFrames.get_frame(
     format: "png" 
 )
 ```
+
+## Thanks
+
+Thanks to Jessica Stokes ([@ticky](https://www.twitter.com/ticky/)) for the idea to make this. 
+
+Thanks to a techslides post [here](http://techslides.com/sample-webm-ogg-and-mp4-video-files-for-html5) for the source video file. 
