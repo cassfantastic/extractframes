@@ -21,8 +21,15 @@ ExtractFrames.get_n_frames(
     format: "png"
 )
 ```
-
-Using get_frame will grab the frame in `video_filename` at the given `time_offset`, and save it in the given `format`. PNG or BMP is recommended here if you optionally want to use `number_frames` as an argument to get more than one frame from this point, as jpeg corruption got quite bad after a few frames.
+Using `get_nth_frame` will grab the `frame_no`'th frame in `video_filename` and save it as the given `format`. Provide the full filepath in `video_filename`. Returns frame_number + 1. 
+```ruby
+    def get_nth_frame(
+        video_filename: path_to_file,
+        frame_no: frame_number,
+        format: "png"
+    )
+```
+Using `get_frame` will grab the frame in `video_filename` at the given `time_offset`, and save it in the given `format`. PNG or BMP is recommended here if you optionally want to use `number_frames` as an argument to get more than one frame from this point, as jpeg corruption got quite bad after a few frames.
 ```ruby
 ExtractFrames.get_frame(
     video_filename: path_to_video,

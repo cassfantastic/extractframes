@@ -39,6 +39,29 @@ module ExtractFrames
         return (start_time+1/fps)
     end
 
+    def get_nth_frame(
+        video_filename: "#{__dir__}/examples/small.mp4",
+        frame_no: 1,
+        number_frames: 1,
+        format: "png"
+    )
+        #frame_no: the number of the frame to grab (1 or greater)
+
+        # Assumptions:
+        # The video stream begins with frame 1 at t=0, and continues with a 
+        # frame every 1/fps seconds. Sampling the video frame stream at 0.5/fps
+        # and then every 1fps following (0.5/fps, 1.5/fps, ...) should be 
+        # grabbing frames maximally far away from any frame transitions. 
+        fps = get_fps(video_filename)
+        frame_time = frame_no/fps - 0.5/fps
+        get_frame(
+            video_filename: video_filename,
+            time_offset: frame_time,
+            format: format 
+        )
+        return frame_no + 1
+    end
+
     def get_frame(
         video_filename: "#{__dir__}/examples/small.mp4",
         time_offset: 0,
