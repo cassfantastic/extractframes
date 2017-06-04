@@ -22,7 +22,7 @@ ExtractFrames.get_n_frames(
 )
 ```
 
-Using `get_nth_frame` will grab the `frame_no`'th frame in `video_filename` and save it as the given `format`. Provide the full filepath in `video_filename`. Returns frame_number + 1. Optionally, set `number_frames` to something other than 1 to save a series of `number_frames` frames, starting at `frame_no`.  
+Using `get_nth_frame` will grab the `frame_no`'th frame in `video_filename` and save it as the given `format`. Provide the full filepath in `video_filename`. Returns the number of the frame immediately following the last frame saved. Optionally, set `number_frames` to something other than 1 to save a series of `number_frames` frames, starting at `frame_no`.  
 ```ruby
 ExtractFrames.get_nth_frame(
     video_filename: path_to_file,
