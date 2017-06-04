@@ -54,12 +54,15 @@ module ExtractFrames
         # grabbing frames maximally far away from any frame transitions. 
         fps = get_fps(video_filename)
         frame_time = frame_no/fps - 0.5/fps
-        get_frame(
-            video_filename: video_filename,
-            time_offset: frame_time,
-            format: format 
-        )
-        return frame_no + 1
+        for i in 0..(number_frames-1)
+            frame_time = frame_no/fps + i/fps - 0.5/fps
+            get_frame(
+                video_filename: video_filename,
+                time_offset: frame_time,
+                format: format 
+            )
+        end
+        return frame_no+number_frames
     end
 
     def get_frame(
